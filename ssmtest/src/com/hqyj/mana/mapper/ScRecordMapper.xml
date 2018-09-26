@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqyj.mana.dao.ScRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.hqyj.mana.pojo.ScRecord" >
+    <id column="ygid" property="ygid" jdbcType="INTEGER" />
+    <result column="basepay" property="basepay" jdbcType="INTEGER" />
+    <result column="meritpay" property="meritpay" jdbcType="INTEGER" />
+    <result column="reward" property="reward" jdbcType="INTEGER" />
+    <result column="fkpay" property="fkpay" jdbcType="INTEGER" />
+    <result column="scnumber" property="scnumber" jdbcType="INTEGER" />
+    <result column="sendtime" property="sendtime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ygid, basepay, meritpay, reward, fkpay, scnumber, sendtime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from screcord
+    where ygid = #{ygid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from screcord
+    where ygid = #{ygid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hqyj.mana.pojo.ScRecord" >
+    insert into screcord (ygid, basepay, meritpay, 
+      reward, fkpay, scnumber, 
+      sendtime)
+    values (#{ygid,jdbcType=INTEGER}, #{basepay,jdbcType=INTEGER}, #{meritpay,jdbcType=INTEGER}, 
+      #{reward,jdbcType=INTEGER}, #{fkpay,jdbcType=INTEGER}, #{scnumber,jdbcType=INTEGER}, 
+      #{sendtime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqyj.mana.pojo.ScRecord" >
+    insert into screcord
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ygid != null" >
+        ygid,
+      </if>
+      <if test="basepay != null" >
+        basepay,
+      </if>
+      <if test="meritpay != null" >
+        meritpay,
+      </if>
+      <if test="reward != null" >
+        reward,
+      </if>
+      <if test="fkpay != null" >
+        fkpay,
+      </if>
+      <if test="scnumber != null" >
+        scnumber,
+      </if>
+      <if test="sendtime != null" >
+        sendtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ygid != null" >
+        #{ygid,jdbcType=INTEGER},
+      </if>
+      <if test="basepay != null" >
+        #{basepay,jdbcType=INTEGER},
+      </if>
+      <if test="meritpay != null" >
+        #{meritpay,jdbcType=INTEGER},
+      </if>
+      <if test="reward != null" >
+        #{reward,jdbcType=INTEGER},
+      </if>
+      <if test="fkpay != null" >
+        #{fkpay,jdbcType=INTEGER},
+      </if>
+      <if test="scnumber != null" >
+        #{scnumber,jdbcType=INTEGER},
+      </if>
+      <if test="sendtime != null" >
+        #{sendtime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqyj.mana.pojo.ScRecord" >
+    update screcord
+    <set >
+      <if test="basepay != null" >
+        basepay = #{basepay,jdbcType=INTEGER},
+      </if>
+      <if test="meritpay != null" >
+        meritpay = #{meritpay,jdbcType=INTEGER},
+      </if>
+      <if test="reward != null" >
+        reward = #{reward,jdbcType=INTEGER},
+      </if>
+      <if test="fkpay != null" >
+        fkpay = #{fkpay,jdbcType=INTEGER},
+      </if>
+      <if test="scnumber != null" >
+        scnumber = #{scnumber,jdbcType=INTEGER},
+      </if>
+      <if test="sendtime != null" >
+        sendtime = #{sendtime,jdbcType=DATE},
+      </if>
+    </set>
+    where ygid = #{ygid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqyj.mana.pojo.ScRecord" >
+    update screcord
+    set basepay = #{basepay,jdbcType=INTEGER},
+      meritpay = #{meritpay,jdbcType=INTEGER},
+      reward = #{reward,jdbcType=INTEGER},
+      fkpay = #{fkpay,jdbcType=INTEGER},
+      scnumber = #{scnumber,jdbcType=INTEGER},
+      sendtime = #{sendtime,jdbcType=DATE}
+    where ygid = #{ygid,jdbcType=INTEGER}
+  </update>
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="com.hqyj.mana.pojo.ScRecord" >
+    select 
+    <include refid="Base_Column_List" />
+    from screcord
+  </select>
+  
+  
+</mapper>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqyj.mana.dao.EmployerHtMapper" >
+  <resultMap id="BaseResultMap" type="com.hqyj.mana.pojo.EmployerHt" >
+    <id column="htid" property="htid" jdbcType="INTEGER" />
+    <result column="ygid" property="ygid" jdbcType="INTEGER" />
+    <result column="starttime" property="starttime" jdbcType="DATE" />
+    <result column="endtime" property="endtime" jdbcType="DATE" />
+    <result column="job" property="job" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    htid, ygid, starttime, endtime, job, content, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yght
+    where htid = #{htid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yght
+    where htid = #{htid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hqyj.mana.pojo.EmployerHt" >
+    insert into yght (htid, ygid, starttime, 
+      endtime, job, content, 
+      remark)
+    values (#{htid,jdbcType=INTEGER}, #{ygid,jdbcType=INTEGER}, #{starttime,jdbcType=DATE}, 
+      #{endtime,jdbcType=DATE}, #{job,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqyj.mana.pojo.EmployerHt" >
+    insert into yght
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="htid != null" >
+        htid,
+      </if>
+      <if test="ygid != null" >
+        ygid,
+      </if>
+      <if test="starttime != null" >
+        starttime,
+      </if>
+      <if test="endtime != null" >
+        endtime,
+      </if>
+      <if test="job != null" >
+        job,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="htid != null" >
+        #{htid,jdbcType=INTEGER},
+      </if>
+      <if test="ygid != null" >
+        #{ygid,jdbcType=INTEGER},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=DATE},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=DATE},
+      </if>
+      <if test="job != null" >
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqyj.mana.pojo.EmployerHt" >
+    update yght
+    <set >
+      <if test="ygid != null" >
+        ygid = #{ygid,jdbcType=INTEGER},
+      </if>
+      <if test="starttime != null" >
+        starttime = #{starttime,jdbcType=DATE},
+      </if>
+      <if test="endtime != null" >
+        endtime = #{endtime,jdbcType=DATE},
+      </if>
+      <if test="job != null" >
+        job = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where htid = #{htid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqyj.mana.pojo.EmployerHt" >
+    update yght
+    set ygid = #{ygid,jdbcType=INTEGER},
+      starttime = #{starttime,jdbcType=DATE},
+      endtime = #{endtime,jdbcType=DATE},
+      job = #{job,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where htid = #{htid,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="com.hqyj.mana.pojo.EmployerHt" >
+    select 
+    <include refid="Base_Column_List" />
+    from yght
+  </select>
+  <select id="selectAllbyendtimedesc" resultMap="BaseResultMap" parameterType="com.hqyj.mana.pojo.EmployerHt" >
+    select 
+    <include refid="Base_Column_List" />
+    from yght order by endtime desc
+  </select>
+  
+  <select id="selectAllbyendtimeasc" resultMap="BaseResultMap" parameterType="com.hqyj.mana.pojo.EmployerHt" >
+    select 
+    <include refid="Base_Column_List" />
+    from yght order by endtime asc
+  </select>
+  <select id="selectbyname" resultMap="BaseResultMap" parameterType="com.hqyj.mana.pojo.EmployerHt" >
+    select y2.*
+    from yginfo y1,yght y2 where y1.name=#{name,jdbcType=VARCHAR} and y1.id=y2.ygid
+  </select>
+</mapper>

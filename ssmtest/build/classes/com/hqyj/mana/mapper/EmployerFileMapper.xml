@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqyj.mana.dao.EmployerFileMapper" >
+  <resultMap id="BaseResultMap" type="com.hqyj.mana.pojo.EmployerFile" >
+    <id column="fileid" property="fileid" jdbcType="INTEGER" />
+    <result column="ygid" property="ygid" jdbcType="INTEGER" />
+    <result column="filename" property="filename" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="typeid" property="typeid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    fileid, ygid, filename, content, remark, typeid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ygfile
+    where fileid = #{fileid,jdbcType=INTEGER}
+  </select>
+   <select id="selectAll" resultMap="BaseResultMap" parameterType="com.hqyj.mana.pojo.EmployerFile" >
+    select 
+    <include refid="Base_Column_List" />
+    from ygfile
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ygfile
+    where fileid = #{fileid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hqyj.mana.pojo.EmployerFile" >
+    insert into ygfile (fileid, ygid, filename, 
+      content, remark, typeid
+      )
+    values (#{fileid,jdbcType=INTEGER}, #{ygid,jdbcType=INTEGER}, #{filename,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{typeid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqyj.mana.pojo.EmployerFile" >
+    insert into ygfile
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fileid != null" >
+        fileid,
+      </if>
+      <if test="ygid != null" >
+        ygid,
+      </if>
+      <if test="filename != null" >
+        filename,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="typeid != null" >
+        typeid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fileid != null" >
+        #{fileid,jdbcType=INTEGER},
+      </if>
+      <if test="ygid != null" >
+        #{ygid,jdbcType=INTEGER},
+      </if>
+      <if test="filename != null" >
+        #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="typeid != null" >
+        #{typeid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqyj.mana.pojo.EmployerFile" >
+    update ygfile
+    <set >
+      <if test="ygid != null" >
+        ygid = #{ygid,jdbcType=INTEGER},
+      </if>
+      <if test="filename != null" >
+        filename = #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="typeid != null" >
+        typeid = #{typeid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where fileid = #{fileid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqyj.mana.pojo.EmployerFile" >
+    update ygfile
+    set ygid = #{ygid,jdbcType=INTEGER},
+      filename = #{filename,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      typeid = #{typeid,jdbcType=INTEGER}
+    where fileid = #{fileid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByTypeId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ygfile
+    where typeid = #{typeid,jdbcType=INTEGER}
+  </select>
+  <select id="selectByYgId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ygfile
+    where ygid = #{typeid,jdbcType=INTEGER}
+  </select>
+  <update id="updateforcontent" parameterType="com.hqyj.mana.pojo.EmployerFile" >
+    update ygfile
+    set ygid = #{ygid,jdbcType=INTEGER},
+      filename = #{filename,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      typeid = #{typeid,jdbcType=INTEGER}
+    where fileid = #{fileid,jdbcType=INTEGER}
+  </update>
+</mapper>

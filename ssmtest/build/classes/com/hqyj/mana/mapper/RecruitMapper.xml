@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqyj.mana.dao.RecruitMapper" >
+  <resultMap id="BaseResultMap" type="com.hqyj.mana.pojo.Recruit" >
+    <id column="applyid" property="applyid" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="ygid" property="ygid" jdbcType="INTEGER" />
+    <result column="major" property="major" jdbcType="VARCHAR" />
+    <result column="dept" property="dept" jdbcType="VARCHAR" />
+    <result column="job" property="job" jdbcType="VARCHAR" />
+    <result column="starttime" property="starttime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    applyid, status, ygid, major, dept, job, starttime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from recruit
+    where applyid = #{applyid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from recruit
+    where applyid = #{applyid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hqyj.mana.pojo.Recruit" >
+    insert into recruit (applyid, status, ygid, 
+      major, dept, job, starttime
+      )
+    values (#{applyid,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{ygid,jdbcType=INTEGER}, 
+      #{major,jdbcType=VARCHAR}, #{dept,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, #{starttime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqyj.mana.pojo.Recruit" >
+    insert into recruit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="applyid != null" >
+        applyid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="ygid != null" >
+        ygid,
+      </if>
+      <if test="major != null" >
+        major,
+      </if>
+      <if test="dept != null" >
+        dept,
+      </if>
+      <if test="job != null" >
+        job,
+      </if>
+      <if test="starttime != null" >
+        starttime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="applyid != null" >
+        #{applyid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="ygid != null" >
+        #{ygid,jdbcType=INTEGER},
+      </if>
+      <if test="major != null" >
+        #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="dept != null" >
+        #{dept,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqyj.mana.pojo.Recruit" >
+    update recruit
+    <set >
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="ygid != null" >
+        ygid = #{ygid,jdbcType=INTEGER},
+      </if>
+      <if test="major != null" >
+        major = #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="dept != null" >
+        dept = #{dept,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        job = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        starttime = #{starttime,jdbcType=DATE},
+      </if>
+    </set>
+    where applyid = #{applyid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqyj.mana.pojo.Recruit" >
+    update recruit
+    set status = #{status,jdbcType=VARCHAR},
+      ygid = #{ygid,jdbcType=INTEGER},
+      major = #{major,jdbcType=VARCHAR},
+      dept = #{dept,jdbcType=VARCHAR},
+      job = #{job,jdbcType=VARCHAR},
+      starttime = #{starttime,jdbcType=DATE}
+    where applyid = #{applyid,jdbcType=INTEGER}
+  </update>
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="com.hqyj.mana.pojo.Recruit" >
+    select 
+    <include refid="Base_Column_List" />
+    from recruit
+  </select>
+</mapper>

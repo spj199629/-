@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqyj.mana.dao.KqTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.hqyj.mana.pojo.KqType" >
+    <id column="typeid" property="typeid" jdbcType="INTEGER" />
+    <result column="typename" property="typename" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    typeid, typename
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from kqtype
+    where typeid = #{typeid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from kqtype
+    where typeid = #{typeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hqyj.mana.pojo.KqType" >
+    insert into kqtype (typeid, typename)
+    values (#{typeid,jdbcType=INTEGER}, #{typename,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqyj.mana.pojo.KqType" >
+    insert into kqtype
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="typeid != null" >
+        typeid,
+      </if>
+      <if test="typename != null" >
+        typename,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="typeid != null" >
+        #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="typename != null" >
+        #{typename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqyj.mana.pojo.KqType" >
+    update kqtype
+    <set >
+      <if test="typename != null" >
+        typename = #{typename,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where typeid = #{typeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqyj.mana.pojo.KqType" >
+    update kqtype
+    set typename = #{typename,jdbcType=VARCHAR}
+    where typeid = #{typeid,jdbcType=INTEGER}
+  </update>
+    <select id="selectAll" resultMap="BaseResultMap" parameterType="com.hqyj.mana.pojo.KqType" >
+    select 
+    <include refid="Base_Column_List" />
+    from kqtype
+  </select>
+  
+</mapper>

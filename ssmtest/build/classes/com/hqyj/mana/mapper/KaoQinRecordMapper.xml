@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqyj.mana.dao.KaoQinRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.hqyj.mana.pojo.KaoQinRecord" >
+    <id column="recordid" property="recordid" jdbcType="INTEGER" />
+    <result column="ygid" property="ygid" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="jcmoney" property="jcmoney" jdbcType="INTEGER" />
+    <result column="recordtime" property="recordtime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    recordid, ygid, type, jcmoney, recordtime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from kqrecord
+    where recordid = #{recordid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from kqrecord
+    where recordid = #{recordid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hqyj.mana.pojo.KaoQinRecord" >
+    insert into kqrecord (recordid, ygid, type, 
+      jcmoney, recordtime)
+    values (#{recordid,jdbcType=INTEGER}, #{ygid,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, 
+      #{jcmoney,jdbcType=INTEGER}, #{recordtime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqyj.mana.pojo.KaoQinRecord" >
+    insert into kqrecord
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="recordid != null" >
+        recordid,
+      </if>
+      <if test="ygid != null" >
+        ygid,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="jcmoney != null" >
+        jcmoney,
+      </if>
+      <if test="recordtime != null" >
+        recordtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="recordid != null" >
+        #{recordid,jdbcType=INTEGER},
+      </if>
+      <if test="ygid != null" >
+        #{ygid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="jcmoney != null" >
+        #{jcmoney,jdbcType=INTEGER},
+      </if>
+      <if test="recordtime != null" >
+        #{recordtime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqyj.mana.pojo.KaoQinRecord" >
+    update kqrecord
+    <set >
+      <if test="ygid != null" >
+        ygid = #{ygid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="jcmoney != null" >
+        jcmoney = #{jcmoney,jdbcType=INTEGER},
+      </if>
+      <if test="recordtime != null" >
+        recordtime = #{recordtime,jdbcType=DATE},
+      </if>
+    </set>
+    where recordid = #{recordid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqyj.mana.pojo.KaoQinRecord" >
+    update kqrecord
+    set ygid = #{ygid,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
+      jcmoney = #{jcmoney,jdbcType=INTEGER},
+      recordtime = #{recordtime,jdbcType=DATE}
+    where recordid = #{recordid,jdbcType=INTEGER}
+  </update>
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="com.hqyj.mana.pojo.KaoQinRecord" >
+    select 
+    <include refid="Base_Column_List" />
+    from kqrecord
+  </select>
+  
+  <select id="selectByType" resultMap="BaseResultMap" parameterType="com.hqyj.mana.pojo.KaoQinRecord" >
+    select 
+    <include refid="Base_Column_List" />
+    from kqrecord
+    where type = #{type,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByYgid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from kqrecord
+    where ygid = #{ygid,jdbcType=INTEGER}
+  </select>
+  <select id="selectjcmoneybyygid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select jcmoney
+    from kqrecord
+    where ygid = #{ygid,jdbcType=INTEGER}
+  </select>
+</mapper>

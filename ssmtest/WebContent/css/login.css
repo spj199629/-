@@ -1,0 +1,13 @@
+		.imgbody{
+				background: url(../img/bj.jpg);/*设置背景图片*/
+				/*background-repeat: no-repeat;设置背景图片不重复*/
+				background-size:100% 100%;/*设置图片尺寸大小*/
+				background-attachment: fixed;/*设置图片定位*/
+			}
+			.myTitle{
+				position: fixed;
+				top:20%;
+				left:37%;
+				letter-spacing: 20px;/*字体的间距*/
+				font-family:STCaiyun;/*字体样式*/
+			}

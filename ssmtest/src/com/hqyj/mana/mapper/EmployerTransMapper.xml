@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqyj.mana.dao.EmployerTransMapper" >
+  <resultMap id="BaseResultMap" type="com.hqyj.mana.pojo.EmployerTrans" >
+    <id column="trid" property="trid" jdbcType="INTEGER" />
+    <result column="ygid" property="ygid" jdbcType="INTEGER" />
+    <result column="oldjob" property="oldjob" jdbcType="VARCHAR" />
+    <result column="newjob" property="newjob" jdbcType="VARCHAR" />
+    <result column="transtime" property="transtime" jdbcType="DATE" />
+    <result column="transreason" property="transreason" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    trid, ygid, oldjob, newjob, transtime, transreason
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ygtrans
+    where trid = #{trid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ygtrans
+    where trid = #{trid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hqyj.mana.pojo.EmployerTrans" >
+    insert into ygtrans (trid, ygid, oldjob, 
+      newjob, transtime, transreason
+      )
+    values (#{trid,jdbcType=INTEGER}, #{ygid,jdbcType=INTEGER}, #{oldjob,jdbcType=VARCHAR}, 
+      #{newjob,jdbcType=VARCHAR}, #{transtime,jdbcType=DATE}, #{transreason,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqyj.mana.pojo.EmployerTrans" >
+    insert into ygtrans
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="trid != null" >
+        trid,
+      </if>
+      <if test="ygid != null" >
+        ygid,
+      </if>
+      <if test="oldjob != null" >
+        oldjob,
+      </if>
+      <if test="newjob != null" >
+        newjob,
+      </if>
+      <if test="transtime != null" >
+        transtime,
+      </if>
+      <if test="transreason != null" >
+        transreason,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="trid != null" >
+        #{trid,jdbcType=INTEGER},
+      </if>
+      <if test="ygid != null" >
+        #{ygid,jdbcType=INTEGER},
+      </if>
+      <if test="oldjob != null" >
+        #{oldjob,jdbcType=VARCHAR},
+      </if>
+      <if test="newjob != null" >
+        #{newjob,jdbcType=VARCHAR},
+      </if>
+      <if test="transtime != null" >
+        #{transtime,jdbcType=DATE},
+      </if>
+      <if test="transreason != null" >
+        #{transreason,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqyj.mana.pojo.EmployerTrans" >
+    update ygtrans
+    <set >
+      <if test="ygid != null" >
+        ygid = #{ygid,jdbcType=INTEGER},
+      </if>
+      <if test="oldjob != null" >
+        oldjob = #{oldjob,jdbcType=VARCHAR},
+      </if>
+      <if test="newjob != null" >
+        newjob = #{newjob,jdbcType=VARCHAR},
+      </if>
+      <if test="transtime != null" >
+        transtime = #{transtime,jdbcType=DATE},
+      </if>
+      <if test="transreason != null" >
+        transreason = #{transreason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where trid = #{trid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqyj.mana.pojo.EmployerTrans" >
+    update ygtrans
+    set ygid = #{ygid,jdbcType=INTEGER},
+      oldjob = #{oldjob,jdbcType=VARCHAR},
+      newjob = #{newjob,jdbcType=VARCHAR},
+      transtime = #{transtime,jdbcType=DATE},
+      transreason = #{transreason,jdbcType=VARCHAR}
+    where trid = #{trid,jdbcType=INTEGER}
+  </update>
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="com.hqyj.mana.pojo.EmployerTrans" >
+    select 
+    <include refid="Base_Column_List" />
+    from ygtrans
+  </select>
+</mapper>

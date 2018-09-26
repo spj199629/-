@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqyj.mana.dao.P_R_RelMapper" >
+  <resultMap id="BaseResultMap" type="com.hqyj.mana.pojo.P_R_Rel" >
+    <id column="prid" property="prid" jdbcType="INTEGER" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="rid" property="rid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    prid, pid, rid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from p_r_rel
+    where prid = #{prid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from p_r_rel
+    where prid = #{prid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hqyj.mana.pojo.P_R_Rel" >
+    insert into p_r_rel (prid, pid, rid
+      )
+    values (#{prid,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{rid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqyj.mana.pojo.P_R_Rel" >
+    insert into p_r_rel
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="prid != null" >
+        prid,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="rid != null" >
+        rid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="prid != null" >
+        #{prid,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="rid != null" >
+        #{rid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqyj.mana.pojo.P_R_Rel" >
+    update p_r_rel
+    <set >
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="rid != null" >
+        rid = #{rid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where prid = #{prid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqyj.mana.pojo.P_R_Rel" >
+    update p_r_rel
+    set pid = #{pid,jdbcType=INTEGER},
+      rid = #{rid,jdbcType=INTEGER}
+    where prid = #{prid,jdbcType=INTEGER}
+  </update>
+  <select id="searchpidbyrid" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    select pid
+    from p_r_rel
+    where rid = #{rid,jdbcType=INTEGER}
+  </select>
+   <insert id="insertbypid" parameterType="com.hqyj.mana.pojo.P_R_Rel" >
+    insert into p_r_rel (pid,rid)
+    values(#{pid,jdbcType=INTEGER},#{rid,jdbcType=INTEGER})
+  </insert>
+</mapper>

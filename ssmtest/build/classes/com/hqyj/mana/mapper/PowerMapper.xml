@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqyj.mana.dao.PowerMapper" >
+  <resultMap id="BaseResultMap" type="com.hqyj.mana.pojo.Power" >
+    <id column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="power" property="power" jdbcType="VARCHAR" />
+    <result column="value" property="value" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pid, power, value
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from power
+    where pid = #{pid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from power
+    where pid = #{pid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hqyj.mana.pojo.Power" >
+    insert into power (pid, power, value
+      )
+    values (#{pid,jdbcType=INTEGER}, #{power,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqyj.mana.pojo.Power" >
+    insert into power
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="power != null" >
+        power,
+      </if>
+      <if test="value != null" >
+        value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="power != null" >
+        #{power,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqyj.mana.pojo.Power" >
+    update power
+    <set >
+      <if test="power != null" >
+        power = #{power,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null" >
+        value = #{value,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pid = #{pid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqyj.mana.pojo.Power" >
+    update power
+    set power = #{power,jdbcType=VARCHAR},
+      value = #{value,jdbcType=VARCHAR}
+    where pid = #{pid,jdbcType=INTEGER}
+  </update>
+  <select id="searchvaluebypid" resultType="java.lang.String" parameterType="java.lang.Integer" >
+    select value
+    from power
+    where pid = #{pid,jdbcType=INTEGER}
+  </select>
+   <insert id="insertpowervalue" parameterType="java.lang.String" >
+    insert into power (value
+      )
+    values (#{value,jdbcType=VARCHAR}
+      )
+  </insert>
+  <select id="selecthadpower" resultType="java.lang.String" parameterType="java.lang.Integer" >
+<!--     SELECT t1.`power` FROM POWER t1,p_r_rel t2 WHERE t1.`pid`=t2.`pid` AND t2.`rid`=1 -->
+	select t1.power 
+	from power t1,p_r_rel t2
+	where t1.pid = t2.pid 
+	and t2.rid = #{rid,jdbcType=INTEGER}
+  </select>
+  <select id="selectnothavepower" resultType="java.lang.String" parameterType="java.lang.Integer" >
+<!-- SELECT POWER FROM POWER WHERE pid NOT IN (SELECT pid FROM p_r_rel WHERE rid=2) -->
+	select power
+	from power
+	where pid
+	not in (select pid from p_r_rel where rid= #{rid,jdbcType=INTEGER})
+  </select>
+  <select id="selectpidbypower" resultType="java.lang.Integer" parameterType="java.lang.String" >
+<!-- SELECT POWER FROM POWER WHERE pid NOT IN (SELECT pid FROM p_r_rel WHERE rid=2) -->
+	select pid
+	from power
+	where power = #{power,jdbcType=VARCHAR}
+  </select>
+</mapper>

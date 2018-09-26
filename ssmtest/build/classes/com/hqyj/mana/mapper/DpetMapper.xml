@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqyj.mana.dao.DpetMapper" >
+  <resultMap id="BaseResultMap" type="com.hqyj.mana.pojo.Dpet" >
+    <id column="deptid" property="deptid" jdbcType="INTEGER" />
+    <result column="deptname" property="deptname" jdbcType="VARCHAR" />
+    <result column="deptnumber" property="deptnumber" jdbcType="INTEGER" />
+    <result column="qynumber" property="qynumber" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    deptid, deptname, deptnumber, qynumber
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from dept
+    where deptid = #{deptid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dept
+    where deptid = #{deptid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hqyj.mana.pojo.Dpet" >
+    insert into dept (deptid, deptname, deptnumber, 
+      qynumber)
+    values (#{deptid,jdbcType=INTEGER}, #{deptname,jdbcType=VARCHAR}, #{deptnumber,jdbcType=INTEGER}, 
+      #{qynumber,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqyj.mana.pojo.Dpet" >
+    insert into dept
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="deptid != null" >
+        deptid,
+      </if>
+      <if test="deptname != null" >
+        deptname,
+      </if>
+      <if test="deptnumber != null" >
+        deptnumber,
+      </if>
+      <if test="qynumber != null" >
+        qynumber,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="deptid != null" >
+        #{deptid,jdbcType=INTEGER},
+      </if>
+      <if test="deptname != null" >
+        #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="deptnumber != null" >
+        #{deptnumber,jdbcType=INTEGER},
+      </if>
+      <if test="qynumber != null" >
+        #{qynumber,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqyj.mana.pojo.Dpet" >
+    update dept
+    <set >
+      <if test="deptname != null" >
+        deptname = #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="deptnumber != null" >
+        deptnumber = #{deptnumber,jdbcType=INTEGER},
+      </if>
+      <if test="qynumber != null" >
+        qynumber = #{qynumber,jdbcType=INTEGER},
+      </if>
+    </set>
+    where deptid = #{deptid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqyj.mana.pojo.Dpet" >
+    update dept
+    set deptname = #{deptname,jdbcType=VARCHAR},
+      deptnumber = #{deptnumber,jdbcType=INTEGER},
+      qynumber = #{qynumber,jdbcType=INTEGER}
+    where deptid = #{deptid,jdbcType=INTEGER}
+  </update>
+  <select id="selectnewdept" resultType="java.lang.String" parameterType="java.lang.String" >
+    select t1.deptname
+    from dept t1,yginfo t2
+    where t1.deptname != t2.dep
+    and dep = #{dep,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="com.hqyj.mana.pojo.Dpet" >
+    select 
+    <include refid="Base_Column_List" />
+    from dept
+  </select>
+  <select id="selecthavenumber" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select count(*)
+    from yginfo t1,dept t1
+    where t1.dep=t2.deptname
+    and dep = #{dep,jdbcType=VARCHAR}
+  </select>
+   <update id="updateqynumber" parameterType="java.lang.Integer" >
+    update dept
+    set qynumber = #{qynumber,jdbcType=INTEGER}
+  </update>
+   <select id="selectdeptnumber" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select deptnumber
+    from dept
+    where deptname = #{deptname,jdbcType=VARCHAR}
+  </select>
+  <select id="selectdeptqynumber" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select qynumber
+    from dept
+    where deptname = #{deptname,jdbcType=VARCHAR}
+  </select>
+   <select id="selectbydeptname" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from dept
+    where deptname = #{deptname,jdbcType=VARCHAR}
+  </select>
+</mapper>

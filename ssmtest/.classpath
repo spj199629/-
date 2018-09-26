@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.0">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.web"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_161/lib/charsets.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_161/lib/deploy.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_161/lib/javaws.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_161/lib/jce.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_161/lib/jfr.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_161/lib/jfxswt.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_161/lib/jsse.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_161/lib/management-agent.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_161/lib/plugin.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_161/lib/resources.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_161/lib/rt.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_161/lib/ext/access-bridge-64.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_161/lib/ext/cldrdata.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_161/lib/ext/dnsns.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_161/lib/ext/jaccess.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_161/lib/ext/jfxrt.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_161/lib/ext/localedata.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_161/lib/ext/nashorn.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_161/lib/ext/sunec.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_161/lib/ext/sunjce_provider.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_161/lib/ext/sunmscapi.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_161/lib/ext/sunpkcs11.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jre1.8.0_161/lib/ext/zipfs.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>

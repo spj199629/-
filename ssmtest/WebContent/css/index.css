@@ -1,0 +1,50 @@
+
+
+.left_menu{
+    width:14%;
+/*    background-color:ivory;*/
+}
+
+.shouye{
+   /* background-color:ivory;*/
+    /*background: radial-gradient(white, #e3eefe);*/
+}
+
+
+.left_ul {
+    list-style: none;/*去掉li标签的圆点*/
+}
+.left_ul li{
+    cursor: pointer;/*指针手势样式*/
+
+}
+.left_ul_li_div{
+    margin-left: 5px;
+    font-size: 16px
+}
+.center_ul {
+    list-style: none;
+
+}
+
+.center_ul li{
+    float:left;
+    cursor: pointer;
+    margin-left: 50px;
+}
+.center_ul_li_div{
+    text-align: center;
+    font-size: 16px
+}
+.foot_div{
+    height:50px;background:#e3eefe;
+}
+.foot_ul{
+    list-style: none;
+    padding-top: 0px;
+}
+.foot_ul li{
+    float:left;
+    margin-left: 50px;
+
+}

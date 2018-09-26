@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqyj.mana.dao.TrainningRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.hqyj.mana.pojo.TrainningRecord" >
+    <id column="recordid" property="recordid" jdbcType="INTEGER" />
+    <result column="pxtype" property="pxtype" jdbcType="VARCHAR" />
+    <result column="ygid" property="ygid" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="starttime" property="starttime" jdbcType="DATE" />
+    <result column="endtime" property="endtime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    recordid, pxtype, ygid, content, starttime, endtime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from pxrecord
+    where recordid = #{recordid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from pxrecord
+    where recordid = #{recordid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hqyj.mana.pojo.TrainningRecord" >
+    insert into pxrecord (recordid, pxtype, ygid, 
+      content, starttime, endtime
+      )
+    values (#{recordid,jdbcType=INTEGER}, #{pxtype,jdbcType=VARCHAR}, #{ygid,jdbcType=INTEGER}, 
+      #{content,jdbcType=VARCHAR}, #{starttime,jdbcType=DATE}, #{endtime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqyj.mana.pojo.TrainningRecord" >
+    insert into pxrecord
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="recordid != null" >
+        recordid,
+      </if>
+      <if test="pxtype != null" >
+        pxtype,
+      </if>
+      <if test="ygid != null" >
+        ygid,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="starttime != null" >
+        starttime,
+      </if>
+      <if test="endtime != null" >
+        endtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="recordid != null" >
+        #{recordid,jdbcType=INTEGER},
+      </if>
+      <if test="pxtype != null" >
+        #{pxtype,jdbcType=VARCHAR},
+      </if>
+      <if test="ygid != null" >
+        #{ygid,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=DATE},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqyj.mana.pojo.TrainningRecord" >
+    update pxrecord
+    <set >
+      <if test="pxtype != null" >
+        pxtype = #{pxtype,jdbcType=VARCHAR},
+      </if>
+      <if test="ygid != null" >
+        ygid = #{ygid,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        starttime = #{starttime,jdbcType=DATE},
+      </if>
+      <if test="endtime != null" >
+        endtime = #{endtime,jdbcType=DATE},
+      </if>
+    </set>
+    where recordid = #{recordid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqyj.mana.pojo.TrainningRecord" >
+    update pxrecord
+    set pxtype = #{pxtype,jdbcType=VARCHAR},
+      ygid = #{ygid,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      starttime = #{starttime,jdbcType=DATE},
+      endtime = #{endtime,jdbcType=DATE}
+    where recordid = #{recordid,jdbcType=INTEGER}
+  </update>
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="com.hqyj.mana.pojo.TrainningType" >
+    select 
+    <include refid="Base_Column_List" />
+    from pxrecord
+  </select>
+</mapper>

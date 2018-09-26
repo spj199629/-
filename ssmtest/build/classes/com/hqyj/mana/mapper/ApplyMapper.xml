@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqyj.mana.dao.ApplyMapper" >
+  <resultMap id="BaseResultMap" type="com.hqyj.mana.pojo.Apply" >
+    <id column="aid" property="aid" jdbcType="INTEGER" />
+    <result column="aname" property="aname" jdbcType="VARCHAR" />
+    <result column="asex" property="asex" jdbcType="VARCHAR" />
+    <result column="abirthday" property="abirthday" jdbcType="DATE" />
+    <result column="atel" property="atel" jdbcType="INTEGER" />
+    <result column="aemail" property="aemail" jdbcType="VARCHAR" />
+    <result column="aduty" property="aduty" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    aid, aname, asex, abirthday, atel, aemail, aduty
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from apply
+    where aid = #{aid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from apply
+    where aid = #{aid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hqyj.mana.pojo.Apply" >
+    insert into apply (aid, aname, asex, 
+      abirthday, atel, aemail, 
+      aduty)
+    values (#{aid,jdbcType=INTEGER}, #{aname,jdbcType=VARCHAR}, #{asex,jdbcType=VARCHAR}, 
+      #{abirthday,jdbcType=DATE}, #{atel,jdbcType=INTEGER}, #{aemail,jdbcType=VARCHAR}, 
+      #{aduty,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqyj.mana.pojo.Apply" >
+    insert into apply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="aid != null" >
+        aid,
+      </if>
+      <if test="aname != null" >
+        aname,
+      </if>
+      <if test="asex != null" >
+        asex,
+      </if>
+      <if test="abirthday != null" >
+        abirthday,
+      </if>
+      <if test="atel != null" >
+        atel,
+      </if>
+      <if test="aemail != null" >
+        aemail,
+      </if>
+      <if test="aduty != null" >
+        aduty,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="aid != null" >
+        #{aid,jdbcType=INTEGER},
+      </if>
+      <if test="aname != null" >
+        #{aname,jdbcType=VARCHAR},
+      </if>
+      <if test="asex != null" >
+        #{asex,jdbcType=VARCHAR},
+      </if>
+      <if test="abirthday != null" >
+        #{abirthday,jdbcType=DATE},
+      </if>
+      <if test="atel != null" >
+        #{atel,jdbcType=INTEGER},
+      </if>
+      <if test="aemail != null" >
+        #{aemail,jdbcType=VARCHAR},
+      </if>
+      <if test="aduty != null" >
+        #{aduty,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqyj.mana.pojo.Apply" >
+    update apply
+    <set >
+      <if test="aname != null" >
+        aname = #{aname,jdbcType=VARCHAR},
+      </if>
+      <if test="asex != null" >
+        asex = #{asex,jdbcType=VARCHAR},
+      </if>
+      <if test="abirthday != null" >
+        abirthday = #{abirthday,jdbcType=DATE},
+      </if>
+      <if test="atel != null" >
+        atel = #{atel,jdbcType=INTEGER},
+      </if>
+      <if test="aemail != null" >
+        aemail = #{aemail,jdbcType=VARCHAR},
+      </if>
+      <if test="aduty != null" >
+        aduty = #{aduty,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where aid = #{aid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqyj.mana.pojo.Apply" >
+    update apply
+    set aname = #{aname,jdbcType=VARCHAR},
+      asex = #{asex,jdbcType=VARCHAR},
+      abirthday = #{abirthday,jdbcType=DATE},
+      atel = #{atel,jdbcType=INTEGER},
+      aemail = #{aemail,jdbcType=VARCHAR},
+      aduty = #{aduty,jdbcType=VARCHAR}
+    where aid = #{aid,jdbcType=INTEGER}
+  </update>
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="com.hqyj.mana.pojo.Apply" >
+    select 
+    <include refid="Base_Column_List" />
+    from apply
+  </select>
+  
+  <select id="selectbyapplyid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from apply t1,recruit t2
+    where t1.aid=t2.applyid
+    and t2.applyid = #{applyid,jdbcType=INTEGER}
+  </select>
+</mapper>

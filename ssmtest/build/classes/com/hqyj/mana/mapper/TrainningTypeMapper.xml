@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqyj.mana.dao.TrainningTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.hqyj.mana.pojo.TrainningType" >
+    <id column="typeid" property="typeid" jdbcType="INTEGER" />
+    <result column="pxtype" property="pxtype" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    typeid, pxtype, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from pxtype
+    where typeid = #{typeid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from pxtype
+    where typeid = #{typeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hqyj.mana.pojo.TrainningType" >
+    insert into pxtype (typeid, pxtype, remark
+      )
+    values (#{typeid,jdbcType=INTEGER}, #{pxtype,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqyj.mana.pojo.TrainningType" >
+    insert into pxtype
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="typeid != null" >
+        typeid,
+      </if>
+      <if test="pxtype != null" >
+        pxtype,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="typeid != null" >
+        #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="pxtype != null" >
+        #{pxtype,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqyj.mana.pojo.TrainningType" >
+    update pxtype
+    <set >
+      <if test="pxtype != null" >
+        pxtype = #{pxtype,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where typeid = #{typeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqyj.mana.pojo.TrainningType" >
+    update pxtype
+    set pxtype = #{pxtype,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where typeid = #{typeid,jdbcType=INTEGER}
+  </update>
+   <select id="selectAll" resultMap="BaseResultMap" parameterType="com.hqyj.mana.pojo.TrainningType" >
+    select 
+    <include refid="Base_Column_List" />
+    from pxtype
+  </select>
+</mapper>

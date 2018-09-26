@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqyj.mana.dao.EmployerMapper" >
+  <resultMap id="BaseResultMap" type="com.hqyj.mana.pojo.Employer" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="major" property="major" jdbcType="VARCHAR" />
+    <result column="dep" property="dep" jdbcType="VARCHAR" />
+    <result column="job" property="job" jdbcType="VARCHAR" />
+    <result column="startTime" property="starttime" jdbcType="DATE" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, sex, birthday, tel, email, major, dep, job, startTime, status, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yginfo
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yginfo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hqyj.mana.pojo.Employer" >
+    insert into yginfo (id, name, sex, 
+      birthday, tel, email, 
+      major, dep, job, startTime, 
+      status, remark)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=DATE}, #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{major,jdbcType=VARCHAR}, #{dep,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, #{starttime,jdbcType=DATE}, 
+      #{status,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqyj.mana.pojo.Employer" >
+    insert into yginfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="major != null" >
+        major,
+      </if>
+      <if test="dep != null" >
+        dep,
+      </if>
+      <if test="job != null" >
+        job,
+      </if>
+      <if test="starttime != null" >
+        startTime,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null" >
+        #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="dep != null" >
+        #{dep,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=DATE},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqyj.mana.pojo.Employer" >
+    update yginfo
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null" >
+        major = #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="dep != null" >
+        dep = #{dep,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        job = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        startTime = #{starttime,jdbcType=DATE},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqyj.mana.pojo.Employer" >
+    update yginfo
+    set name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      tel = #{tel,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      major = #{major,jdbcType=VARCHAR},
+      dep = #{dep,jdbcType=VARCHAR},
+      job = #{job,jdbcType=VARCHAR},
+      startTime = #{starttime,jdbcType=DATE},
+      status = #{status,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectAll" parameterType="com.hqyj.mana.pojo.Employer" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" />
+  	 from yginfo
+  	 
+   	   <trim prefix="where " suffix=" " suffixOverrides="and"> 
+  	  	<if test="name != null and name!='' ">
+      	  name like #{name,jdbcType=VARCHAR} and
+      	</if>
+       	<if test="sex != null and sex !=''">
+       	  sex = #{sex,jdbcType=VARCHAR} and
+      </if> 
+      <if test="birthDayStart!=null and birthDayStart!=''">
+      	birthday between #{birthDayStart}  and #{birthDayEnd} 
+      </if>
+    </trim>
+  </select>
+  <select id="selectByName" parameterType="com.hqyj.mana.pojo.Employer" resultMap="BaseResultMap">
+  	select *
+  	 from yginfo
+	where name = #{name,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAllbytimedesc" resultMap="BaseResultMap" parameterType="com.hqyj.mana.pojo.Employer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yginfo order by startTime desc
+  </select>
+  
+  <select id="selectAllbytimeasc" resultMap="BaseResultMap" parameterType="com.hqyj.mana.pojo.Employer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yginfo order by startTime asc
+  </select>
+</mapper>
